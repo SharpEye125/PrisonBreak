@@ -205,6 +205,33 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4559997312484704751, guid: 345030cb41d0ebc4485b25ac72ad2060, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 345030cb41d0ebc4485b25ac72ad2060, type: 3}
+--- !u!1 &512751829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4559997312484704738, guid: 345030cb41d0ebc4485b25ac72ad2060,
+    type: 3}
+  m_PrefabInstance: {fileID: 557555430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &512751831
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512751829}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &512751834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4559997312484704737, guid: 345030cb41d0ebc4485b25ac72ad2060,
@@ -394,6 +421,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Smart: {fileID: 1603365247}
   Brawn: {fileID: 512751834}
+--- !u!1 &1603365242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4559997312484704738, guid: 345030cb41d0ebc4485b25ac72ad2060,
+    type: 3}
+  m_PrefabInstance: {fileID: 337476355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1603365244
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603365242}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &1603365247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4559997312484704737, guid: 345030cb41d0ebc4485b25ac72ad2060,
