@@ -29,14 +29,14 @@ public class PlayerSwitching : MonoBehaviour
     }
     void SwitchPlayers()
     {
-        if(target == Smart && timer > switchDelay)
+        if(target == Smart && timer > switchDelay && Time.timeScale > 0)
         {
             timer = 0;
             target = Brawn;
             Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
         }
-        else if(target == Brawn && timer > switchDelay)
+        else if(target == Brawn && timer > switchDelay && Time.timeScale > 0)
         {
             timer = 0;
             target = Smart;
