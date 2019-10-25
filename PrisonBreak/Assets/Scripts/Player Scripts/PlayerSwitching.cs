@@ -29,11 +29,14 @@ public class PlayerSwitching : MonoBehaviour
         if(target == Smart)
         {
             target = Brawn;
-            
+            Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
         }
         else
         {
             target = Smart;
+            Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
+            Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
     }
 
