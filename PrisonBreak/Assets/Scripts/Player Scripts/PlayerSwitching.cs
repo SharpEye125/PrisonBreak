@@ -13,6 +13,7 @@ public class PlayerSwitching : MonoBehaviour
     void Start()
     {
         target = Smart;
+        Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
     }
 
     // Update is called once per frame
