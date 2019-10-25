@@ -7,6 +7,8 @@ public class PlayerSwitching : MonoBehaviour
     public Transform Smart;
     public Transform Brawn;
     Transform target;
+    public float switchDelay = 0.5f;
+    float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,7 @@ public class PlayerSwitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchPlayers();
@@ -26,14 +28,16 @@ public class PlayerSwitching : MonoBehaviour
     }
     void SwitchPlayers()
     {
-        if(target == Smart)
+        if(target == Smart && timer > switchDelay)
         {
+            timer = 0;
             target = Brawn;
             Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
         }
-        else
+        else if(target == Brawn && timer > switchDelay)
         {
+            timer = 0;
             target = Smart;
             Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
