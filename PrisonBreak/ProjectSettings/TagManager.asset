@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Guardblocking
-  - PAttack
   - EAttack
+  - MPlayerAttack
+  - SPlayerAttack
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - Guardblock
+  - 
   - Marty
   - Sanchez
   - PAttack
