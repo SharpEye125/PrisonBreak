@@ -9,6 +9,7 @@ public class PlayerSwitching : MonoBehaviour
     Transform target;
     public float switchDelay = 0.5f;
     float timer = 0;
+    public float switchSpeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,9 @@ public class PlayerSwitching : MonoBehaviour
         {
             SwitchPlayers();
         }
-        transform.position = new Vector3(target.position.x,
-    target.position.y, transform.position.z);
+
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x,
+    target.position.y, transform.position.z), switchSpeed);
     }
     void SwitchPlayers()
     {
