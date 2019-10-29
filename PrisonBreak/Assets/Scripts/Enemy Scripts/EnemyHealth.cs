@@ -9,13 +9,23 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PBullet")
+        if (collision.tag == "MPlayerAttack")
         {
             Ehealth--;
             if (Ehealth < 1)
             {
                 Destroy(gameObject);
                 Instantiate (prefab, transform.position, Quaternion.identity);
+            }
+        }
+        if (collision.tag == "SPlayerAttack")
+        {
+            Ehealth--;
+            Ehealth--;
+            if (Ehealth < 1)
+            {
+                Destroy(gameObject);
+                Instantiate(prefab, transform.position, Quaternion.identity);
             }
         }
     }

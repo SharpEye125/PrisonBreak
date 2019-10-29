@@ -26,20 +26,19 @@ public class Bodyguard : MonoBehaviour
         {
             GuardEnabler();
         }
-        if (followDirection.magnitude < startTriggerRange && guardMe == true && followDirection.magnitude < tooClose)
+        if (followDirection.magnitude < startTriggerRange && guardMe == true && followDirection.magnitude > tooClose)
         {
             Guard();
         }
     }
     void Guard()
     {
-        if (followDistance > tooClose)
-        {
+
             Vector2 followDirection = new Vector2(Smart.position.x - Brawn.position.x,
                 Smart.position.y - Brawn.position.y);
             followDirection.Normalize();
             GetComponent<Rigidbody2D>().velocity = followDirection * followSpeed;
-        }
+
     }
     void GuardEnabler()
     {
