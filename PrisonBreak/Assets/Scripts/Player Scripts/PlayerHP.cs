@@ -7,17 +7,19 @@ using UnityEngine.UI;
 public class PlayerHP : MonoBehaviour
 {
     public int health = 10;
+    public int maxHealth = 10;
     public Text healthText;
     public Slider healthSlider;
-    public int lives = 10;
+    public int reputation = 0;
+    public int playerToughness = 10;
+    public Transform deathPoint;
+    
 
     void Start()
     {
         healthText.text = "Health: " + health;
         healthSlider.maxValue = health;
         healthSlider.value = health;
-        //PlayerPrefs.SetInt("lives", lives);
-        lives = PlayerPrefs.GetInt("lives");
     }
     //Enemy Contact
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,16 +31,13 @@ public class PlayerHP : MonoBehaviour
             healthSlider.value = health;
             if (health < 1)
             {
-                if(lives > 0)
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                    PlayerPrefs.SetInt("lives", lives - 1);
-                    
-                }
-                else
-                {
-                    SceneManager.LoadScene("GameOver");
-                }
+                transform.position = new Vector3(deathPoint.position.x,
+    deathPoint.position.y, transform.position.z);
+                reputation--;
+                playerToughness--;
+                health = maxHealth / 2;
+                healthText.text = "Health: " + health;
+                healthSlider.value = health;
             }
         }
     }
@@ -63,16 +62,7 @@ public class PlayerHP : MonoBehaviour
             healthSlider.value = health;
             if (health < 1)
             {
-                if (lives > 0)
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                    PlayerPrefs.SetInt("lives", lives - 1);
 
-                }
-                else
-                {
-                    SceneManager.LoadScene("GameOver");
-                }
             }
         }
     }

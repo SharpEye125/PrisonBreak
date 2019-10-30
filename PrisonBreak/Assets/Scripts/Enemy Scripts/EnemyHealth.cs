@@ -5,27 +5,28 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int Ehealth = 5;
-    public GameObject prefab;
+    public int MartyDamage = 1;
+    public int SanchezDamage = 2;
+    public int enemyToughness = 10;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "MPlayerAttack")
         {
-            Ehealth--;
+            Ehealth =- MartyDamage;
             if (Ehealth < 1)
             {
-                Destroy(gameObject);
-                Instantiate (prefab, transform.position, Quaternion.identity);
+                enemyToughness--;
+                GameObject.Find("Marty").GetComponent<PlayerHP>().playerToughness++;
             }
         }
         if (collision.tag == "SPlayerAttack")
         {
-            Ehealth--;
-            Ehealth--;
+            Ehealth =- SanchezDamage;
             if (Ehealth < 1)
             {
-                Destroy(gameObject);
-                Instantiate(prefab, transform.position, Quaternion.identity);
+                enemyToughness--;
+                GameObject.Find("Sanchez").GetComponent<PlayerHP>().playerToughness++;
             }
         }
     }

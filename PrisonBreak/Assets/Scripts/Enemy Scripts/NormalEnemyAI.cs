@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class NormalEnemyAI : MonoBehaviour
 {
     public Transform player;
     public float chaseSpeed = 2.0f;
@@ -12,6 +12,11 @@ public class EnemyAI : MonoBehaviour
     public Vector2 paceDirection;
     Vector3 startPosition;
     bool home = true;
+    bool grudge = false;
+    public bool grudgeType;
+    public bool normalType;
+    public float grudgeStart = 15.0f;
+    float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,21 +26,26 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 chaseDirection = new Vector2(player.position.x - transform.position.x, 
+        Vector2 chaseDirection = new Vector2(player.position.x - transform.position.x,
             player.position.y - transform.position.y);
-        if(chaseDirection.magnitude < chaseTriggerDistance)
+        if (chaseDirection.magnitude < chaseTriggerDistance && grudge == true && timer > grudgeStart && grudgeType == true)
         {
             Chase();
         }
-        else if (!home)
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (gameObject.tag == "MPlayerAttack" || gameObject.tag == "SPlayerAttack");
         {
-            GoHome();
-        }
-        else
-        {
-            Pace();
+            if (grudgeType == true)
+            {
+                timer += Time.deltaTime;
+                grudge = true;
+            }
         }
     }
+
     void Chase()
     {
         home = false;
@@ -44,11 +54,12 @@ public class EnemyAI : MonoBehaviour
         chaseDirection.Normalize();
         GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
     }
+
     void GoHome()
     {
-        Vector2 homeDirection = new Vector2(startPosition.x - transform.position.x, 
+        Vector2 homeDirection = new Vector2(startPosition.x - transform.position.x,
             startPosition.y - transform.position.y);
-        if(homeDirection.magnitude < 0.2f)
+        if (homeDirection.magnitude < 0.2f)
         {
             transform.position = startPosition;
             home = true;
@@ -57,16 +68,6 @@ public class EnemyAI : MonoBehaviour
         {
             homeDirection.Normalize();
             GetComponent<Rigidbody2D>().velocity = homeDirection * paceSpeed;
-        }    }
-
-    void Pace()
-    {
-        Vector3 displacement = transform.position - startPosition;
-        if(displacement.magnitude >= paceDistance)
-        {
-            paceDirection = -displacement;
         }
-        paceDirection.Normalize();
-        GetComponent<Rigidbody2D>().velocity = paceDirection * paceSpeed;
     }
 }

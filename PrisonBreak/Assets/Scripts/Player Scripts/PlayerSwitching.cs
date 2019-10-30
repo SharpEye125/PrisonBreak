@@ -37,6 +37,8 @@ public class PlayerSwitching : MonoBehaviour
             target = Brawn;
             Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
+            Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
+            Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
         }
         else if(target == Brawn && timer > switchDelay && Time.timeScale > 0)
         {
@@ -44,6 +46,8 @@ public class PlayerSwitching : MonoBehaviour
             target = Smart;
             Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            Smart.gameObject.GetComponent<PlayerAttack>().enabled = true;
+            Brawn.gameObject.GetComponent<PlayerAttack>().enabled = false;
         }
     }
 
