@@ -11,63 +11,61 @@ public class NormalEnemyAI : MonoBehaviour
     public float chaseTriggerDistance = 5.0f;
     public Vector2 paceDirection;
     Vector3 startPosition;
-    bool home = true;
-    bool grudge = false;
+    public bool grudge = false;
     public bool grudgeType;
     public bool normalType;
     public float grudgeStart = 15.0f;
-    float timer = 0;
+    public float timer = 0;
+    public bool canAgro;
     // Start is called before the first frame update
     void Start()
     {
         startPosition = transform.position;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        Vector2 chaseDirection = new Vector2(player.position.x - transform.position.x,
-            player.position.y - transform.position.y);
-        if (chaseDirection.magnitude < chaseTriggerDistance && grudge == true && timer > grudgeStart && grudgeType == true)
+        Vector2 chaseDirection = new Vector2(GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
+            GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
+        if (chaseDirection.magnitude < chaseTriggerDistance && grudge == true && timer > grudgeStart && grudgeType == true && canAgro == true
+            || chaseDirection.magnitude < chaseTriggerDistance &&  normalType == true && canAgro == true)
         {
             Chase();
+        }
+        if (grudge == true)
+        {
+            timer += Time.deltaTime;
+        }
+        if (timer >= grudgeStart && grudge == false)
+        {
+            timer = 0;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.tag == "MPlayerAttack" || gameObject.tag == "SPlayerAttack");
+        if (collision.tag == "MPlayerAttack" || collision.tag == "SPlayerAttack")
         {
             if (grudgeType == true)
             {
                 timer += Time.deltaTime;
                 grudge = true;
+                canAgro = true;
+            }
+            else if (normalType == true)
+            {
+                canAgro = true;
             }
         }
     }
 
     void Chase()
     {
-        home = false;
-        Vector2 chaseDirection = new Vector2(player.position.x - transform.position.x,
-            player.position.y - transform.position.y);
+        Vector2 chaseDirection = new Vector2(GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
+            GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
         chaseDirection.Normalize();
         GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
     }
 
-    void GoHome()
-    {
-        Vector2 homeDirection = new Vector2(startPosition.x - transform.position.x,
-            startPosition.y - transform.position.y);
-        if (homeDirection.magnitude < 0.2f)
-        {
-            transform.position = startPosition;
-            home = true;
-        }
-        else
-        {
-            homeDirection.Normalize();
-            GetComponent<Rigidbody2D>().velocity = homeDirection * paceSpeed;
-        }
-    }
 }

@@ -6,7 +6,7 @@ public class PlayerSwitching : MonoBehaviour
 {
     public Transform Smart;
     public Transform Brawn;
-    Transform target;
+    public Transform target;
     public float switchDelay = 0.5f;
     float timer = 0;
     public float switchSpeed = 1.0f;

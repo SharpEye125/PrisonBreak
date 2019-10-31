@@ -13,19 +13,23 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.tag == "MPlayerAttack")
         {
-            Ehealth =- MartyDamage;
+            Ehealth -= MartyDamage;
             if (Ehealth < 1)
             {
                 enemyToughness--;
+                gameObject.GetComponent<NormalEnemyAI>().grudge = false;
+                gameObject.GetComponent<NormalEnemyAI>().canAgro = false;
                 GameObject.Find("Marty").GetComponent<PlayerHP>().playerToughness++;
             }
         }
         if (collision.tag == "SPlayerAttack")
         {
-            Ehealth =- SanchezDamage;
+            Ehealth -= SanchezDamage;
             if (Ehealth < 1)
             {
                 enemyToughness--;
+                gameObject.GetComponent<NormalEnemyAI>().grudge = false;
+                gameObject.GetComponent<NormalEnemyAI>().canAgro = false;
                 GameObject.Find("Sanchez").GetComponent<PlayerHP>().playerToughness++;
             }
         }
