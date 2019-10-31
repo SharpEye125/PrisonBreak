@@ -11,6 +11,8 @@ public class PatrolBehavior : MonoBehaviour
     float moveSpeed = 2f;
 
     int waypointIndex = 0;
+    float waitTime = 3f;
+    float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,12 @@ public class PatrolBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move ();
+        timer += Time.deltaTime;
+        if(timer > waitTime)
+        {
+            Move ();
+
+        }
     }
 
     void Move()
@@ -29,6 +36,7 @@ public class PatrolBehavior : MonoBehaviour
         if (transform.position == waypoints[waypointIndex].transform.position)
         {
             waypointIndex += 1;
+            timer = 0;
         }
         if (waypointIndex == waypoints.Length)
         {
