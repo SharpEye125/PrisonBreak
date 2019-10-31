@@ -17,6 +17,8 @@ public class NormalEnemyAI : MonoBehaviour
     public float grudgeStart = 15.0f;
     public float timer = 0;
     public bool canAgro;
+    public bool defeated;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +30,10 @@ public class NormalEnemyAI : MonoBehaviour
     {
         Vector2 chaseDirection = new Vector2(GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
             GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
-        if (chaseDirection.magnitude < chaseTriggerDistance && grudge == true && timer > grudgeStart && grudgeType == true && canAgro == true
-            || chaseDirection.magnitude < chaseTriggerDistance &&  normalType == true && canAgro == true)
+        //Just seperating to be able to read the if statement more easily
+        if (chaseDirection.magnitude < chaseTriggerDistance && grudge == true && timer > grudgeStart && grudgeType == true 
+            || chaseDirection.magnitude < chaseTriggerDistance && grudgeType == true && canAgro == true
+            || chaseDirection.magnitude < chaseTriggerDistance && normalType == true && canAgro == true)
         {
             Chase();
         }
@@ -41,6 +45,10 @@ public class NormalEnemyAI : MonoBehaviour
         {
             timer = 0;
         }
+        if (defeated == true)
+        {
+            canAgro = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,7 +58,6 @@ public class NormalEnemyAI : MonoBehaviour
             if (grudgeType == true)
             {
                 timer += Time.deltaTime;
-                grudge = true;
                 canAgro = true;
             }
             else if (normalType == true)

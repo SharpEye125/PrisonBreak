@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int Ehealth = 5;
+    public int eMaxHealth = 5;
     public int MartyDamage = 1;
     public int SanchezDamage = 2;
     public int enemyToughness = 10;
+    public Transform deathPoint;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,9 +19,16 @@ public class EnemyHealth : MonoBehaviour
             if (Ehealth < 1)
             {
                 enemyToughness--;
-                gameObject.GetComponent<NormalEnemyAI>().grudge = false;
-                gameObject.GetComponent<NormalEnemyAI>().canAgro = false;
                 GameObject.Find("Marty").GetComponent<PlayerHP>().playerToughness++;
+                GameObject.Find("Marty").GetComponent<PlayerHP>().updateToughness();
+                if (gameObject.GetComponent<NormalEnemyAI>().grudgeType == true)
+                {
+                    gameObject.GetComponent<NormalEnemyAI>().grudge = true;
+                }
+                transform.position = new Vector3(deathPoint.position.x,
+                    deathPoint.position.y, transform.position.z);
+                Ehealth = eMaxHealth;
+                gameObject.GetComponent<NormalEnemyAI>().defeated = true;
             }
         }
         if (collision.tag == "SPlayerAttack")
@@ -28,9 +37,17 @@ public class EnemyHealth : MonoBehaviour
             if (Ehealth < 1)
             {
                 enemyToughness--;
-                gameObject.GetComponent<NormalEnemyAI>().grudge = false;
-                gameObject.GetComponent<NormalEnemyAI>().canAgro = false;
                 GameObject.Find("Sanchez").GetComponent<PlayerHP>().playerToughness++;
+                GameObject.Find("Sanchez").GetComponent<PlayerHP>().updateToughness();
+                if (gameObject.GetComponent<NormalEnemyAI>().grudgeType == true)
+                {
+                    gameObject.GetComponent<NormalEnemyAI>().grudge = true;
+                    gameObject.GetComponent<NormalEnemyAI>().defeated = true;
+                }
+                transform.position = new Vector3(deathPoint.position.x,
+                    deathPoint.position.y, transform.position.z);
+                Ehealth = eMaxHealth;
+                gameObject.GetComponent<NormalEnemyAI>().defeated = true;
             }
         }
     }

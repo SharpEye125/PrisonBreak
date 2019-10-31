@@ -10,6 +10,7 @@ public class PlayerHP : MonoBehaviour
     public int maxHealth = 10;
     public Text healthText;
     public Slider healthSlider;
+    public Text toughText;
     public int reputation = 0;
     public int playerToughness = 10;
     public Transform deathPoint;
@@ -20,6 +21,7 @@ public class PlayerHP : MonoBehaviour
         healthText.text = "Health: " + health;
         healthSlider.maxValue = health;
         healthSlider.value = health;
+        toughText.text = "Toughness: " + playerToughness;
     }
     //Enemy Contact
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,17 +29,19 @@ public class PlayerHP : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health--;
-            healthText.text = "Health: " + health;
-            healthSlider.value = health;
+            updateHP();
             if (health < 1)
             {
                 transform.position = new Vector3(deathPoint.position.x,
-    deathPoint.position.y, transform.position.z);
-                reputation--;
+                    deathPoint.position.y, transform.position.z);
                 playerToughness--;
+                if (playerToughness >= collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
+                {
+                    playerToughness--;
+                }
+                    updateToughness();
                 health = maxHealth / 2;
-                healthText.text = "Health: " + health;
-                healthSlider.value = health;
+                updateHP();
             }
         }
     }
@@ -50,20 +54,27 @@ public class PlayerHP : MonoBehaviour
             {
                 health++;
                 Destroy(collision.gameObject);
-                healthText.text = "Health: " + health;
-                healthSlider.value = health;
+                updateHP();
             }
         }
         //Enemy Bullets
         if (collision.tag == "Enemy")
         {
             health--;
-            healthText.text = "Health: " + health;
-            healthSlider.value = health;
+            updateHP();
             if (health < 1)
             {
 
             }
         }
+    }
+    public void updateHP()
+    {
+        healthText.text = "Health: " + health;
+        healthSlider.value = health;
+    }
+    public void updateToughness()
+    {
+        toughText.text = "Toughness: " + playerToughness;
     }
 }
