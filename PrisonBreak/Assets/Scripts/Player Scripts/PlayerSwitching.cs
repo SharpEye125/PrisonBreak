@@ -33,6 +33,7 @@ public class PlayerSwitching : MonoBehaviour
     {
         if(target == Smart && timer > switchDelay && Time.timeScale > 0)
         {
+            //Switches it to Sanchez
             timer = 0;
             target = Brawn;
             Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
@@ -40,6 +41,7 @@ public class PlayerSwitching : MonoBehaviour
             Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
             Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
         }
+        //Switches it to Marty
         else if(target == Brawn && timer > switchDelay && Time.timeScale > 0)
         {
             timer = 0;

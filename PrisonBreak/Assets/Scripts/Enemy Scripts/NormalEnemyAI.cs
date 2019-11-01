@@ -48,6 +48,7 @@ public class NormalEnemyAI : MonoBehaviour
         if (defeated == true)
         {
             canAgro = false;
+            defeated = false;
         }
     }
 

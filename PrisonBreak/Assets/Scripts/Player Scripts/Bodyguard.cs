@@ -8,9 +8,10 @@ public class Bodyguard : MonoBehaviour
     public Transform Brawn;
     public float startTriggerRange = 3.0f;
     public float followDistance = 10.0f;
-    public float tooClose = 5.0f;
+    public float tooClose = 1.0f;
     public float followSpeed = 2.0f;
     public bool guardMe = false;
+    bool following = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +27,11 @@ public class Bodyguard : MonoBehaviour
         {
             GuardEnabler();
         }
-        if (followDirection.magnitude < startTriggerRange && guardMe == true && followDirection.magnitude > tooClose)
+        if (followDirection.magnitude < startTriggerRange && guardMe == true && followDirection.magnitude > tooClose || 
+            followDirection.magnitude < followDistance && guardMe == true && followDirection.magnitude > tooClose)
         {
             Guard();
+            following = true;
         }
     }
     void Guard()
@@ -49,6 +52,7 @@ public class Bodyguard : MonoBehaviour
         else
         {
             guardMe = false;
+            following = false;
         }
     }
 }
