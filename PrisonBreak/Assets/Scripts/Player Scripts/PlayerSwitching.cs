@@ -32,30 +32,39 @@ public class PlayerSwitching : MonoBehaviour
     }
     void SwitchPlayers()
     {
+        //Switches it to Sanchez
         if(target == Smart && timer > switchDelay && Time.timeScale > 0)
         {
-            //Switches it to Sanchez
             timer = 0;
-            target = Brawn;
-            Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
-            Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
-            Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
-            Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
-            Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
-            Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+
+            switchSanchez();
         }
         //Switches it to Marty
         else if(target == Brawn && timer > switchDelay && Time.timeScale > 0)
         {
             timer = 0;
-            target = Smart;
-            Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
-            Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
-            Smart.gameObject.GetComponent<PlayerAttack>().enabled = true;
-            Brawn.gameObject.GetComponent<PlayerAttack>().enabled = false;
-            Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
-            Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+
+            switchMarty();
         }
     }
-
+    void switchSanchez()
+    {
+        target = Brawn;
+        Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
+        Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
+        Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
+        Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+        Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+    }
+    void switchMarty()
+    {
+        target = Smart;
+        Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
+        Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        Smart.gameObject.GetComponent<PlayerAttack>().enabled = true;
+        Brawn.gameObject.GetComponent<PlayerAttack>().enabled = false;
+        Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+        Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+    }
 }

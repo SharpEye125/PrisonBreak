@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PopUpActionText : MonoBehaviour
 {
-    public Transform Camera;
-    public float showUpDistance = 5.0f;
-    public Text Text;
+    public float Range = 15.0f;
+    public bool showUp = false;
+    public string popUpText;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +17,26 @@ public class PopUpActionText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 playerDir = new Vector2(Camera.gameObject.GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
-                   Camera.gameObject.GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
-        if (playerDir.magnitude >= showUpDistance)
+        Vector2 playerDirection = new Vector2(GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
+            GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
+        if (playerDirection.magnitude < Range)
         {
-            
+            showUp = true;
         }
-        else
+        else 
         {
-            
+            showUp = false;
+        }
+        
+    }
+    void OnGUI()
+    {
+        if (showUp == true)
+        {
+            Vector3 getPixelPos = Camera.main.WorldToScreenPoint(transform.position + new Vector3(-1f, 1f, 0f));//<< WorldToScreenPoint( position + offset )
+            getPixelPos.y = Screen.height - getPixelPos.y;
+            GUI.color = Color.black;
+            GUI.Label(new Rect(getPixelPos.x, getPixelPos.y, 200f, 100f), popUpText);
         }
     }
 }
