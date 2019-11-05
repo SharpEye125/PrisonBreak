@@ -57,6 +57,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1000182503877855797, guid: 1987f9a97da0d524dbe7d19687914c1a,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000182503877855803, guid: 1987f9a97da0d524dbe7d19687914c1a,
         type: 3}
       propertyPath: m_LocalPosition.x

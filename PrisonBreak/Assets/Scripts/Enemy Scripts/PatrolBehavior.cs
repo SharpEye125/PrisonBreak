@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.UI;
 
 public class PatrolBehavior : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class PatrolBehavior : MonoBehaviour
     bool reachedEndOfPath = false;
     Seeker seeker;
     Rigidbody2D rb;
+
+    public GameObject MPlayerAttack;
+    public GameObject SPlayerAttack;
+    public Transform Marty;
+    public Transform Sanchez;
+    public float martyDistance = 0;
+    public float sanchezDistance = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,7 +93,20 @@ public class PatrolBehavior : MonoBehaviour
             }
 
         }
+        
     }
+    private void OnCollisionEnter2D(Collision2D collisonInfo)
+    {
+        if(collisonInfo.collider.tag == "MPlayerAttack")
+        {
+            Chase();
+        }
+        if (collisonInfo.collider.tag == "SPlayerAttack")
+        {
+            Chase();
+        }
+    }
+    
 
     void Move()
     {
@@ -101,4 +123,12 @@ public class PatrolBehavior : MonoBehaviour
         }
         target = waypoints[waypointIndex];
     }
+    void Chase()
+    {
+        if (target == martyDistance < sanchezDistance)
+        {
+
+        }
+    }
+   
 }
