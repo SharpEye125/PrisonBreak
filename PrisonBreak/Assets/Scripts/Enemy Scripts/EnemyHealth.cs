@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemyHealth : MonoBehaviour
     public int SanchezDamage = 2;
     public int enemyToughness = 10;
     public Transform deathPoint;
+    public Slider healthSlider;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

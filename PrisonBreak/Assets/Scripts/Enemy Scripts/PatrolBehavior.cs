@@ -29,6 +29,7 @@ public class PatrolBehavior : MonoBehaviour
     void Start()
     {
         transform.position = waypoints[waypointIndex].transform.position;
+        target = waypoints[0];
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         InvokeRepeating("UpdatePath", 0f, .5f);
@@ -74,7 +75,7 @@ public class PatrolBehavior : MonoBehaviour
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
             Vector2 force = direction * chaseSpeed * Time.deltaTime;
 
-            rb.AddForce(force);
+            rb.AddForce(force * moveSpeed);
 
             float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
             if (distance < nextWaypointDistance)
@@ -88,14 +89,16 @@ public class PatrolBehavior : MonoBehaviour
     void Move()
     {
         //transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
-        if (transform.position == waypoints[waypointIndex].transform.position)
+        if (Vector3.Distance(transform.position, waypoints[waypointIndex].transform.position) < 0.1f)
         {
             waypointIndex += 1;
             timer = 0;
+            rb.velocity = Vector2.zero;
         }
         if (waypointIndex == waypoints.Length)
         {
             waypointIndex = 0;
         }
+        target = waypoints[waypointIndex];
     }
 }

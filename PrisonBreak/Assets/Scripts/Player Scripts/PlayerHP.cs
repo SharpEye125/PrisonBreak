@@ -40,7 +40,7 @@ public class PlayerHP : MonoBehaviour
     //Enemy Contact
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && !contact && collision.gameObject.GetComponent<NormalEnemyAI>().canAgro == true || collision.gameObject.tag == "Enemy" && !contact && collision.gameObject.GetComponent<NormalEnemyAI>().canAgro == false && collision.gameObject.tag == "Enemy" && !contact && collision.gameObject.GetComponent<NormalEnemyAI>().grudge == true)
+        if (collision.gameObject.tag == "Enemy" && !contact)
         {
             health--;
             updateHP();
@@ -56,14 +56,13 @@ public class PlayerHP : MonoBehaviour
                     updateToughness();
                 health = maxHealth / 2;
                 updateHP();
-                collision.gameObject.GetComponent<NormalEnemyAI>().canAgro = false;
             }
         }
     }
     //Damages you if you stay in contact
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && collision.gameObject.GetComponent<NormalEnemyAI>().canAgro == true)
+        if (collision.gameObject.tag == "Enemy")
         {
             contact = true;
             if (timer >= continuousContact)
@@ -83,7 +82,6 @@ public class PlayerHP : MonoBehaviour
                     updateToughness();
                     health = maxHealth / 2;
                     updateHP();
-                    collision.gameObject.GetComponent<NormalEnemyAI>().canAgro = false;
                 }
             }
         }

@@ -15,6 +15,7 @@ public class PlayerSwitching : MonoBehaviour
     {
         target = Smart;
         Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
     }
 
     // Update is called once per frame
@@ -40,6 +41,8 @@ public class PlayerSwitching : MonoBehaviour
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
             Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
             Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
+            Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+            Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
         }
         //Switches it to Marty
         else if(target == Brawn && timer > switchDelay && Time.timeScale > 0)
@@ -50,6 +53,8 @@ public class PlayerSwitching : MonoBehaviour
             Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
             Smart.gameObject.GetComponent<PlayerAttack>().enabled = true;
             Brawn.gameObject.GetComponent<PlayerAttack>().enabled = false;
+            Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+            Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
         }
     }
 
