@@ -7,7 +7,6 @@ TagManager:
   - EAttack
   - MPlayerAttack
   - SPlayerAttack
-  - PAttack
   - Enemy
   layers:
   - Default
