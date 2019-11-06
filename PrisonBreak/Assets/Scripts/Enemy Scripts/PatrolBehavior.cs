@@ -103,7 +103,7 @@ public class PatrolBehavior : MonoBehaviour
         }
         if (collisonInfo.collider.tag == "SPlayerAttack")
         {
-            Chase();
+            Chase2();
         }
     }
     
@@ -125,10 +125,17 @@ public class PatrolBehavior : MonoBehaviour
     }
     void Chase()
     {
-        if (target == martyDistance < sanchezDistance)
-        {
-
-        }
+        Vector2 chaseDirection = new Vector2(Marty.position.x - transform.position.x, Marty.position.y - transform.position.y);
+        chaseDirection.Normalize();
+        //transform.up = chaseDirection;
+        GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
+    }
+    void Chase2()
+    {
+        Vector2 chaseDirection = new Vector2(Sanchez.position.x - transform.position.x, Sanchez.position.y - transform.position.y);
+        chaseDirection.Normalize();
+        //transform.up = chaseDirection;
+        GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
     }
    
 }
