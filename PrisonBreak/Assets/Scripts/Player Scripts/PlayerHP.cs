@@ -11,6 +11,7 @@ public class PlayerHP : MonoBehaviour
     public Text healthText;
     public Slider healthSlider;
     public Text toughText;
+    public Text repText;
     public int reputation = 0;
     public int playerToughness = 10;
     public Transform deathPoint;
@@ -24,7 +25,7 @@ public class PlayerHP : MonoBehaviour
         healthText.text = "Health: " + health;
         healthSlider.maxValue = health;
         healthSlider.value = health;
-        toughText.text = "Toughness: " + playerToughness;
+        updateRepAndTough();
     }
     void Update()
     {
@@ -53,7 +54,7 @@ public class PlayerHP : MonoBehaviour
                 {
                     playerToughness--;
                 }
-                    updateToughness();
+                updateRepAndTough();
                 health = maxHealth / 2;
                 updateHP();
             }
@@ -79,7 +80,7 @@ public class PlayerHP : MonoBehaviour
                     {
                         playerToughness--;
                     }
-                    updateToughness();
+                    updateRepAndTough();
                     health = maxHealth / 2;
                     updateHP();
                 }
@@ -123,8 +124,9 @@ public class PlayerHP : MonoBehaviour
         healthText.text = "Health: " + health;
         healthSlider.value = health;
     }
-    public void updateToughness()
+    public void updateRepAndTough()
     {
         toughText.text = "Toughness: " + playerToughness;
+        repText.text = "Reputation: " + reputation;
     }
 }
