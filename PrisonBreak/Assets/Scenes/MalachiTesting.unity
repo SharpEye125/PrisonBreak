@@ -9259,7 +9259,7 @@ MonoBehaviour:
   Brawn: {fileID: 4559997313004117767}
   startTriggerRange: 3
   followDistance: 10
-  tooClose: 1
+  tooClose: 1.75
   followSpeed: 2
   guardMe: 0
 --- !u!114 &4559997313004117770
