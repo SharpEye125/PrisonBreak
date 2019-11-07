@@ -32,5 +32,9 @@ public class PlayerAttack : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = shootDir * bulletSpeed;
             Destroy(bullet, bulletLifetime);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print(PlayerPrefs.GetInt("levels"));
+        }
     }
 }

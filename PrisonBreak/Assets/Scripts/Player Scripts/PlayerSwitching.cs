@@ -14,8 +14,15 @@ public class PlayerSwitching : MonoBehaviour
     void Start()
     {
         target = Smart;
+        if (Brawn.transform != Smart.transform)
+        {
         Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
         Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+        }
+        else if (Smart.transform == Brawn.transform)
+        {
+
+        }
     }
 
     // Update is called once per frame

@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public int lives = 10;
+    public int levels = 0;
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<Canvas>().enabled = true;
-        Time.timeScale = 0;
+        levels = PlayerPrefs.GetInt("levels");
     }
 
     // Update is called once per frame
@@ -21,9 +21,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level 1");
-        GetComponent<Canvas>().enabled = false;
-        Time.timeScale = 1;
-        PlayerPrefs.SetInt("lives", 10);
+        PlayerPrefs.SetInt("levels", 1);
     }
     public void QuitGame()
     {
@@ -33,5 +31,23 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Level Select");
         GetComponent<Canvas>().enabled = false;
+    }
+    public void ContinueGame()
+    {
+        switch (levels)
+        {
+            case 1:
+                SceneManager.LoadScene("Level 1");
+                break;
+            case 2:
+                SceneManager.LoadScene("Level 2");
+                break;
+            case 3:
+                SceneManager.LoadScene("Level 3");
+                break;
+            case 4:
+                SceneManager.LoadScene("Level 4");
+                break;
+        }
     }
 }

@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 enemyToughness--;
                 GameObject.Find("Marty").GetComponent<PlayerHP>().playerToughness++;
-                GameObject.Find("Marty").GetComponent<PlayerHP>().updateRepAndTough();
+                GameObject.Find("Marty").GetComponent<PlayerHP>().UpdateRepAndTough();
                 if (gameObject.GetComponent<NormalEnemyAI>().grudgeType == true)
                 {
                     gameObject.GetComponent<NormalEnemyAI>().grudge = true;
@@ -41,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 enemyToughness--;
                 GameObject.Find("Sanchez").GetComponent<PlayerHP>().playerToughness++;
-                GameObject.Find("Sanchez").GetComponent<PlayerHP>().updateRepAndTough();
+                GameObject.Find("Sanchez").GetComponent<PlayerHP>().UpdateRepAndTough();
                 if (gameObject.GetComponent<NormalEnemyAI>().grudgeType == true)
                 {
                     gameObject.GetComponent<NormalEnemyAI>().grudge = true;

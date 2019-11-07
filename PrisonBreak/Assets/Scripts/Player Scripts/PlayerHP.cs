@@ -16,8 +16,12 @@ public class PlayerHP : MonoBehaviour
     public int playerToughness = 10;
     public Transform deathPoint;
     public float continuousContact = 1;
-    float timer = 0.0f;
+    float contactTimer = 0.0f;
     bool contact;
+    bool sleeping = false;
+    public float startSleepingRange = 1;
+    public float sleepDuration = 30.0f;
+    float sleepTimer = 0;
 
 
     void Start()
@@ -25,17 +29,28 @@ public class PlayerHP : MonoBehaviour
         healthText.text = "Health: " + health;
         healthSlider.maxValue = health;
         healthSlider.value = health;
-        updateRepAndTough();
+        UpdateRepAndTough();
     }
     void Update()
     {
         if (contact == true)
         {
-            timer += Time.deltaTime;
+            contactTimer += Time.deltaTime;
         }
         else if (contact == false)
         {
-            timer = 0.0f;
+            contactTimer = 0.0f;
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SleepEnabler();
+        }
+        Vector2 bedDistance = new Vector2(transform.position.x - deathPoint.position.x,
+            transform.position.y - deathPoint.position.y);
+        if (bedDistance.magnitude <= startSleepingRange && sleeping == true)
+        {
+            Sleep();
+            sleepTimer += Time.deltaTime;
         }
     }
     //Enemy Contact
@@ -44,7 +59,7 @@ public class PlayerHP : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && !contact)
         {
             health--;
-            updateHP();
+            UpdateHP();
             if (health < 1)
             {
                 transform.position = new Vector3(deathPoint.position.x,
@@ -54,9 +69,9 @@ public class PlayerHP : MonoBehaviour
                 {
                     playerToughness--;
                 }
-                updateRepAndTough();
+                UpdateRepAndTough();
                 health = maxHealth / 2;
-                updateHP();
+                UpdateHP();
             }
         }
     }
@@ -66,11 +81,11 @@ public class PlayerHP : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             contact = true;
-            if (timer >= continuousContact)
+            if (contactTimer >= continuousContact)
             {
-                timer = 0;
+                contactTimer = 0;
                 health--;
-                updateHP();
+                UpdateHP();
                 if (health < 1)
                 {
                     transform.position = new Vector3(deathPoint.position.x,
@@ -80,9 +95,9 @@ public class PlayerHP : MonoBehaviour
                     {
                         playerToughness--;
                     }
-                    updateRepAndTough();
+                    UpdateRepAndTough();
                     health = maxHealth / 2;
-                    updateHP();
+                    UpdateHP();
                 }
             }
         }
@@ -105,28 +120,63 @@ public class PlayerHP : MonoBehaviour
             {
                 health++;
                 Destroy(collision.gameObject);
-                updateHP();
+                UpdateHP();
             }
         }
         //Enemy Bullets
         if (collision.tag == "Enemy")
         {
             health--;
-            updateHP();
+            UpdateHP();
             if (health < 1)
             {
 
             }
         }
     }
-    public void updateHP()
+    public void UpdateHP()
     {
         healthText.text = "Health: " + health;
         healthSlider.value = health;
     }
-    public void updateRepAndTough()
+    public void UpdateRepAndTough()
     {
         toughText.text = "Toughness: " + playerToughness;
         repText.text = "Reputation: " + reputation;
+    }
+    void Sleep()
+    {
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+        transform.position = new Vector3(deathPoint.position.x,
+                        deathPoint.position.y, transform.position.z);
+
+        if (sleepTimer >= sleepDuration)
+        {
+            sleepTimer = 0;
+            if (health <= maxHealth)
+            {
+                health++;
+                UpdateHP();
+            }
+        }
+    }
+    void SleepEnabler()
+    {
+        Vector2 bedDistance = new Vector2(transform.position.x - deathPoint.position.x,
+            transform.position.y - deathPoint.position.y);
+        if (sleeping == false)
+        {
+            if (bedDistance.magnitude <= startSleepingRange)
+            {
+                sleeping = true;
+            }
+        }
+        else
+        {
+            sleeping = false;
+            gameObject.GetComponent<PlayerMovement>().enabled = true;
+            gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+        }
     }
 }
