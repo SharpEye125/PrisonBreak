@@ -31,9 +31,8 @@ public class PatrolBehavior : MonoBehaviour
     public GameObject SPlayerAttack;
     public Transform Marty;
     public Transform Sanchez;
-    public float martyDistance = 0;
-    public float sanchezDistance = 0;
-
+    bool isChasing;
+    string tarName;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,50 +63,76 @@ public class PatrolBehavior : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > waitTime)
+        if (timer > waitTime && !isChasing)
         {
-            Move ();
-            if (path == null)
-            {
-                return;
-            }
-            if (currentWaypoint >= path.vectorPath.Count)
-            {
-                reachedEndOfPath = true;
-                return;
-            }
-            else
-            {
-                reachedEndOfPath = false;
-            }
+            Move();
 
-            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = direction * chaseSpeed * Time.deltaTime;
-
-            rb.AddForce(force * moveSpeed);
-
-            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-            if (distance < nextWaypointDistance)
+        }else if (isChasing)
+        {
+            if (tarName == "MPlayerAttack")
             {
-                currentWaypoint++;
+                target = Marty;
             }
+            if (tarName == "SPlayerAttack")
+            {
+                target = Sanchez;
+            }
+            Debug.Log("set target");
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            
+        }
+        if (path == null)
+        {
+            Debug.Log("null path");
+            return;
+        }
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            Debug.Log("count");
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            Debug.Log("end of path");
+            reachedEndOfPath = false;
+        }
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * chaseSpeed * Time.deltaTime;
+
+        rb.AddForce(force * moveSpeed);
+
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
 
         }
-        
     }
     private void OnCollisionEnter2D(Collision2D collisonInfo)
     {
         if(collisonInfo.collider.tag == "MPlayerAttack")
         {
-            Chase();
+            Debug.Log("here");
+            target = Marty;
+            tarName = collisonInfo.collider.tag;
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            isChasing = true;
+            currentWaypoint = 0;
         }
         if (collisonInfo.collider.tag == "SPlayerAttack")
         {
-            Chase2();
+            target = Sanchez;
+            tarName = collisonInfo.collider.tag;
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            isChasing = true;
+            currentWaypoint = 0;
         }
     }
     
-
+    
     void Move()
     {
         //transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].transform.position, moveSpeed * Time.deltaTime);
@@ -123,19 +148,6 @@ public class PatrolBehavior : MonoBehaviour
         }
         target = waypoints[waypointIndex];
     }
-    void Chase()
-    {
-        Vector2 chaseDirection = new Vector2(Marty.position.x - transform.position.x, Marty.position.y - transform.position.y);
-        chaseDirection.Normalize();
-        //transform.up = chaseDirection;
-        GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
-    }
-    void Chase2()
-    {
-        Vector2 chaseDirection = new Vector2(Sanchez.position.x - transform.position.x, Sanchez.position.y - transform.position.y);
-        chaseDirection.Normalize();
-        //transform.up = chaseDirection;
-        GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
-    }
+   
    
 }
