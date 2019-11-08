@@ -8,6 +8,7 @@ public class PopUpActionText : MonoBehaviour
     public float Range = 15.0f;
     public bool showUp = false;
     public string popUpText;
+    public Vector3 offSet;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,7 @@ public class PopUpActionText : MonoBehaviour
     {
         if (showUp == true)
         {
-            Vector3 getPixelPos = Camera.main.WorldToScreenPoint(transform.position + new Vector3(-1f, 1f, 0f));//<< WorldToScreenPoint( position + offset )
+            Vector3 getPixelPos = Camera.main.WorldToScreenPoint(transform.position + offSet);//<< WorldToScreenPoint( position + offset )
             getPixelPos.y = Screen.height - getPixelPos.y;
             GUI.color = Color.black;
             GUI.Label(new Rect(getPixelPos.x, getPixelPos.y, 200f, 100f), popUpText);
