@@ -65,9 +65,10 @@ public class PatrolBehavior : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > waitTime && !isChasing)
         {
-            Move();
+            //Move();
 
-        }else if (isChasing)
+        }
+        else if (isChasing == true)
         {
             if (tarName == "MPlayerAttack")
             {
@@ -78,7 +79,7 @@ public class PatrolBehavior : MonoBehaviour
                 target = Sanchez;
             }
             Debug.Log("set target");
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            //seeker.StartPath(rb.position, target.position, OnPathComplete);
             
         }
         if (path == null)
@@ -104,7 +105,7 @@ public class PatrolBehavior : MonoBehaviour
         rb.AddForce(force * moveSpeed);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        
+        Debug.Log(distance < nextWaypointDistance);
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
