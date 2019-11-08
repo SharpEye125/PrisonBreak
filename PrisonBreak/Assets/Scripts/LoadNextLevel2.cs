@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadNextLevel : MonoBehaviour
+public class LoadNextLeve2 : MonoBehaviour
 {
     public int NLT = 0;
 
@@ -14,7 +14,7 @@ public class LoadNextLevel : MonoBehaviour
             NLT++;
             if(NLT == 1)
             {
-                SceneManager.LoadScene("Level 2");
+                SceneManager.LoadScene("Level 4");
             }
         }
     }

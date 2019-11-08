@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadNextLevel : MonoBehaviour
+public class LoadNextLeve4 : MonoBehaviour
 {
     public int NLT = 0;
 
