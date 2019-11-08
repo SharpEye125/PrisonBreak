@@ -28,10 +28,14 @@ public class Bodyguard : MonoBehaviour
             GuardEnabler();
         }
         if (followDirection.magnitude < startTriggerRange && guardMe == true && followDirection.magnitude > tooClose || 
-            followDirection.magnitude < followDistance && guardMe == true && followDirection.magnitude > tooClose)
+            followDirection.magnitude < followDistance && guardMe == true && followDirection.magnitude > tooClose && gameObject.GetComponent<PlayerHP>().sleeping == false)
         {
             Guard();
             following = true;
+        }
+        if (gameObject.GetComponent<PlayerHP>().sleeping == true)
+        {
+            guardMe = false;
         }
     }
     void Guard()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NormalEnemyAI : MonoBehaviour
 {
-    public Transform player;
+    public Transform Marty;
+    public Transform Sanchez;
     public float chaseSpeed = 2.0f;
     public float paceSpeed = 1.5f;
     public float paceDistance = 3.0f;
@@ -18,6 +19,7 @@ public class NormalEnemyAI : MonoBehaviour
     public float timer = 0;
     public bool canAgro;
     public bool defeated;
+    public Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +30,8 @@ public class NormalEnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 chaseDirection = new Vector2(GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
-            GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
+        Vector2 chaseDirection = new Vector2(target.position.x - transform.position.x, 
+            target.position.y - transform.position.y);
         //Just seperating to be able to read the if statement more easily
         if (chaseDirection.magnitude < chaseTriggerDistance && grudge == true && timer > grudgeStart && grudgeType == true 
             || chaseDirection.magnitude < chaseTriggerDistance && grudgeType == true && canAgro == true
@@ -54,24 +56,40 @@ public class NormalEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "MPlayerAttack" || collision.tag == "SPlayerAttack")
+        if (collision.tag == "MPlayerAttack")
         {
             if (grudgeType == true)
             {
+                timer += Time.deltaTime;
+                canAgro = true;
+                target = Marty;
+            }
+            else if (normalType == true)
+            {
+                canAgro = true;
+                target = Marty;
+            }
+        }
+        if (collision.tag == "SPlayerAttack")
+        {
+            if (grudgeType == true)
+            {
+                target = Sanchez;
                 timer += Time.deltaTime;
                 canAgro = true;
             }
             else if (normalType == true)
             {
                 canAgro = true;
+                target = Sanchez;
             }
         }
     }
 
     void Chase()
     {
-        Vector2 chaseDirection = new Vector2(GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.x - transform.position.x,
-            GameObject.Find("Main Camera").GetComponent<PlayerSwitching>().target.position.y - transform.position.y);
+        Vector2 chaseDirection = new Vector2(target.position.x - transform.position.x,
+            target.position.y - transform.position.y);
         chaseDirection.Normalize();
         GetComponent<Rigidbody2D>().velocity = chaseDirection * chaseSpeed;
     }

@@ -27,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
                 if (gameObject.GetComponent<NormalEnemyAI>().grudgeType == true)
                 {
                     gameObject.GetComponent<NormalEnemyAI>().grudge = true;
+                    gameObject.GetComponent<NormalEnemyAI>().target = gameObject.GetComponent<NormalEnemyAI>().Marty;
                 }
                 transform.position = new Vector3(deathPoint.position.x,
                     deathPoint.position.y, transform.position.z);
@@ -44,6 +45,7 @@ public class EnemyHealth : MonoBehaviour
                 GameObject.Find("Sanchez").GetComponent<PlayerHP>().UpdateRepAndTough();
                 if (gameObject.GetComponent<NormalEnemyAI>().grudgeType == true)
                 {
+                    gameObject.GetComponent<NormalEnemyAI>().target = gameObject.GetComponent<NormalEnemyAI>().Sanchez;
                     gameObject.GetComponent<NormalEnemyAI>().grudge = true;
                     gameObject.GetComponent<NormalEnemyAI>().defeated = true;
                 }

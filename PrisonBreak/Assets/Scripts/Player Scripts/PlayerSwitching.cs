@@ -21,8 +21,10 @@ public class PlayerSwitching : MonoBehaviour
         }
         else if (Smart.transform == Brawn.transform)
         {
-
+            Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
+            Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
         }
+        
     }
 
     // Update is called once per frame
@@ -36,6 +38,22 @@ public class PlayerSwitching : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x,
     target.position.y, transform.position.z), switchSpeed);
+        if (target == Smart)
+        {
+            Smart.gameObject.GetComponent<PlayerHP>().canSleep = true;
+        }
+        else
+        {
+            Smart.gameObject.GetComponent<PlayerHP>().canSleep = false;
+        }
+        if (target == Brawn)
+        {
+            Brawn.gameObject.GetComponent<PlayerHP>().canSleep = true;
+        }
+        else
+        {
+            Brawn.gameObject.GetComponent<PlayerHP>().canSleep = false;
+        }
     }
     void SwitchPlayers()
     {
@@ -57,21 +75,56 @@ public class PlayerSwitching : MonoBehaviour
     void switchSanchez()
     {
         target = Brawn;
-        Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
-        Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
-        Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
-        Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
-        Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
-        Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+        if (Smart.gameObject.GetComponent<PlayerHP>().sleeping == false)
+        {
+            DisableMarty();
+            EnableSanchez();
+        }
+        else if (Smart.gameObject.GetComponent<PlayerHP>().sleeping == true)
+        {
+            EnableSanchez();
+        }
     }
     void switchMarty()
     {
+        if (Brawn.gameObject.GetComponent<PlayerHP>().sleeping == false)
+        {
+            DisableSanchez();
+            EnableMarty();
+        }
+        else if (Brawn.gameObject.GetComponent<PlayerHP>().sleeping == true)
+        {
+            EnableMarty();
+        }
+
         target = Smart;
-        Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
+    }
+
+    public void DisableSanchez()
+    {
         Brawn.gameObject.GetComponent<PlayerMovement>().enabled = false;
-        Smart.gameObject.GetComponent<PlayerAttack>().enabled = true;
         Brawn.gameObject.GetComponent<PlayerAttack>().enabled = false;
-        Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
         Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
     }
+    public void EnableSanchez()
+    {
+        Brawn.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+        Brawn.gameObject.GetComponent<PlayerAttack>().enabled = true;
+        Brawn.gameObject.GetComponent<PlayerMovement>().enabled = true;
+    }
+
+    public void DisableMarty()
+    {
+        Smart.gameObject.GetComponent<PlayerMovement>().enabled = false;
+        Smart.gameObject.GetComponent<PlayerAttack>().enabled = false;
+        Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = false;
+    }
+    public void EnableMarty()
+    {
+        Smart.gameObject.GetComponent<PlayerAnimationScript>().enabled = true;
+        Smart.gameObject.GetComponent<PlayerAttack>().enabled = true;
+        Smart.gameObject.GetComponent<PlayerMovement>().enabled = true;
+        
+    }
+
 }

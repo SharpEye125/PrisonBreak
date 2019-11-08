@@ -18,7 +18,8 @@ public class PlayerHP : MonoBehaviour
     public float continuousContact = 1;
     float contactTimer = 0.0f;
     bool contact;
-    bool sleeping = false;
+    public bool sleeping = false;
+    public bool canSleep;
     public float startSleepingRange = 1;
     public float sleepDuration = 30.0f;
     float sleepTimer = 0;
@@ -41,7 +42,8 @@ public class PlayerHP : MonoBehaviour
         {
             contactTimer = 0.0f;
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+
+        if (Input.GetKeyDown(KeyCode.Z) && canSleep == true)
         {
             SleepEnabler();
         }
@@ -52,6 +54,7 @@ public class PlayerHP : MonoBehaviour
             Sleep();
             sleepTimer += Time.deltaTime;
         }
+
     }
     //Enemy Contact
     private void OnCollisionEnter2D(Collision2D collision)
@@ -130,7 +133,7 @@ public class PlayerHP : MonoBehaviour
             UpdateHP();
             if (health < 1)
             {
-
+                transform.position = deathPoint.position;
             }
         }
     }
@@ -144,6 +147,7 @@ public class PlayerHP : MonoBehaviour
         toughText.text = "Toughness: " + playerToughness;
         repText.text = "Reputation: " + reputation;
     }
+
     void Sleep()
     {
         gameObject.GetComponent<PlayerMovement>().enabled = false;
@@ -161,6 +165,7 @@ public class PlayerHP : MonoBehaviour
             }
         }
     }
+
     void SleepEnabler()
     {
         Vector2 bedDistance = new Vector2(transform.position.x - deathPoint.position.x,
