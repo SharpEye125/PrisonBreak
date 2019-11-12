@@ -7,10 +7,7 @@ public class NormalEnemyAI : MonoBehaviour
     public Transform Marty;
     public Transform Sanchez;
     public float chaseSpeed = 2.0f;
-    public float paceSpeed = 1.5f;
-    public float paceDistance = 3.0f;
     public float chaseTriggerDistance = 5.0f;
-    public Vector2 paceDirection;
     Vector3 startPosition;
     public bool grudge = false;
     public bool grudgeType;
