@@ -17,6 +17,7 @@ public class LevelSelect : MonoBehaviour
     {
         GetComponent<Canvas>().enabled = true;
         levels = PlayerPrefs.GetInt("levels");
+        
         switch (levels)
         {
             case 1:

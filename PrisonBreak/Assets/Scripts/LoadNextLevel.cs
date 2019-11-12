@@ -5,18 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class LoadNextLevel : MonoBehaviour
 {
-    public int NLT = 0;
+    public int levels;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Start()
     {
-        if(collision.gameObject.tag == "NextLT")
+        levels = PlayerPrefs.GetInt("levels");
+    }
+
+    void Update()
+    {
+        
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "NextLevel")
         {
-            NLT++;
-            if(NLT == 1)
+            
+            levels++;
+            PlayerPrefs.GetInt("levels", levels);
+            switch (levels)
             {
-                SceneManager.LoadScene("Level 2");
+                case 1:
+
+                    break;
+
+                case 2:
+                    SceneManager.LoadScene("Level 2");
+                    break;
+
+                case 3:
+                    SceneManager.LoadScene("Level 3");
+                    break;
+
+                case 4:
+                    SceneManager.LoadScene("Level 4");
+                    break;
             }
         }
     }
-
 }
