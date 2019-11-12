@@ -27,7 +27,7 @@ public class PlayerHP : MonoBehaviour
 
     void Start()
     {
-        healthText.text = "Health: " + health;
+        healthText.text = "Health:" + health;
         healthSlider.maxValue = health;
         healthSlider.value = health;
         UpdateRepAndTough();
@@ -139,13 +139,13 @@ public class PlayerHP : MonoBehaviour
     }
     public void UpdateHP()
     {
-        healthText.text = "Health: " + health;
+        healthText.text = "Health:" + health;
         healthSlider.value = health;
     }
     public void UpdateRepAndTough()
     {
-        toughText.text = "Toughness: " + playerToughness;
-        repText.text = "Reputation: " + reputation;
+        toughText.text = "Toughness:" + playerToughness;
+        repText.text = "Reputation:" + reputation;
     }
 
     void Sleep()
