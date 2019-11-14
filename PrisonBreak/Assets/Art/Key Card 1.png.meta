@@ -103,7 +103,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 8
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32cbc091d2f2c314b96fe93c9ff92bd0
+      spriteID: 4499f2c340f09d1479591e6dbd96512d
       internalID: -3925966362340944368
       vertices: []
       indices: 
@@ -122,30 +122,9 @@ TextureImporter:
       name: Key Card 1_1
       rect:
         serializedVersion: 2
-        x: 8
-        y: 16
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 868607fb87807ac4c836f1df60ed65b3
-      internalID: -1732714429040892076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Key Card 1_2
-      rect:
-        serializedVersion: 2
         x: 0
         y: 0
-        width: 8
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,29 +133,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9745038d72623f74c977b87765670545
-      internalID: 393989696086974520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Key Card 1_3
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f23b8c4b2b2ef74594ab066753fb4ef
-      internalID: -5231218672605239478
+      spriteID: 14d8af5bb3c7f0544b924c7ae14ef4c0
+      internalID: -1732714429040892076
       vertices: []
       indices: 
       edges: []
