@@ -72,7 +72,7 @@ public class PlayerSwitching : MonoBehaviour
             switchMarty();
         }
     }
-    void switchSanchez()
+    public void switchSanchez()
     {
         target = Brawn;
         if (Smart.gameObject.GetComponent<PlayerHP>().sleeping == false)
@@ -85,8 +85,9 @@ public class PlayerSwitching : MonoBehaviour
             EnableSanchez();
         }
     }
-    void switchMarty()
+    public void switchMarty()
     {
+        target = Smart;
         if (Brawn.gameObject.GetComponent<PlayerHP>().sleeping == false)
         {
             DisableSanchez();
@@ -97,7 +98,6 @@ public class PlayerSwitching : MonoBehaviour
             EnableMarty();
         }
 
-        target = Smart;
     }
 
     public void DisableSanchez()
