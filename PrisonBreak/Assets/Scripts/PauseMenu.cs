@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         GetComponent<Canvas>().enabled = false;
-        GameObject.Find("ControlsCanvas").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("TextControls").GetComponent<Text>().enabled = false; 
     }
 
     // Update is called once per frame
@@ -22,11 +22,12 @@ public class PauseMenu : MonoBehaviour
             {
                 GetComponent<Canvas>().enabled = true;
                 Time.timeScale = 0;
+                
             }
             else
             {
                 GetComponent<Canvas>().enabled = false;
-                GameObject.Find("ControlsCanvas").GetComponent<Canvas>().enabled = false;
+                GameObject.Find("TextControls").GetComponent<Text>().enabled = false;
                 Time.timeScale = 1;
             }
         }
@@ -40,15 +41,17 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         GetComponent<Canvas>().enabled = false;
+        GameObject.Find("TextControls").GetComponent<Text>().enabled = false;
     }
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+        
     }
     public void Controls()
     {
-        GameObject.Find("ControlsCanvas").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("TextControls").GetComponent<Text>().enabled = true;
     }
     public void QuitGame()
     {

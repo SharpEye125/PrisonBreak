@@ -68,13 +68,15 @@ public class PlayerHP : MonoBehaviour
                 transform.position = new Vector3(deathPoint.position.x,
                     deathPoint.position.y, transform.position.z);
                 playerToughness--;
-                if (playerToughness >= collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
+                if (playerToughness > collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
                 {
                     playerToughness--;
                 }
                 UpdateRepAndTough();
                 health = maxHealth / 2;
                 UpdateHP();
+                gameObject.GetComponent<KeycardDoors>().KeycardEnable();
+                gameObject.GetComponent<KeycardDoors>().hasKeyCard = false;
             }
         }
     }
@@ -94,13 +96,15 @@ public class PlayerHP : MonoBehaviour
                     transform.position = new Vector3(deathPoint.position.x,
                         deathPoint.position.y, transform.position.z);
                     playerToughness--;
-                    if (playerToughness >= collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
+                    if (playerToughness > collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
                     {
                         playerToughness--;
                     }
                     UpdateRepAndTough();
                     health = maxHealth / 2;
                     UpdateHP();
+                    gameObject.GetComponent<KeycardDoors>().KeycardEnable();
+                    gameObject.GetComponent<KeycardDoors>().hasKeyCard = false;
                 }
             }
         }
@@ -133,7 +137,18 @@ public class PlayerHP : MonoBehaviour
             UpdateHP();
             if (health < 1)
             {
-                transform.position = deathPoint.position;
+                transform.position = new Vector3(deathPoint.position.x,
+                    deathPoint.position.y, transform.position.z);
+                playerToughness--;
+                if (playerToughness > collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
+                {
+                    playerToughness--;
+                }
+                UpdateRepAndTough();
+                health = maxHealth / 2;
+                UpdateHP();
+                gameObject.GetComponent<KeycardDoors>().KeycardEnable();
+                gameObject.GetComponent<KeycardDoors>().hasKeyCard = false;
             }
         }
     }
