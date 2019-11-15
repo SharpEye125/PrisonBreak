@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         GetComponent<Canvas>().enabled = false;
+        GameObject.Find("ControlsCanvas").GetComponent<Canvas>().enabled = false;
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 GetComponent<Canvas>().enabled = false;
+                GameObject.Find("ControlsCanvas").GetComponent<Canvas>().enabled = false;
                 Time.timeScale = 1;
             }
         }
@@ -43,6 +45,10 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+    }
+    public void Controls()
+    {
+        GameObject.Find("ControlsCanvas").GetComponent<Canvas>().enabled = true;
     }
     public void QuitGame()
     {
