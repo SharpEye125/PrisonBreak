@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - NextLT
   - NextLevel
+  - Doors
   layers:
   - Default
   - TransparentFX

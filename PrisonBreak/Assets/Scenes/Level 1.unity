@@ -167,6 +167,12 @@ MonoBehaviour:
   showUp: 0
   popUpText: Press Z to sleep
   offSet: {x: -0.5, y: 1, z: 0}
+--- !u!4 &614719127 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5151720225649316720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1621931040
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,11 +185,13 @@ GameObject:
   - component: {fileID: 1621931049}
   - component: {fileID: 1621931048}
   - component: {fileID: 1621931047}
+  - component: {fileID: 1621931051}
   - component: {fileID: 1621931046}
   - component: {fileID: 1621931045}
   - component: {fileID: 1621931044}
   - component: {fileID: 1621931043}
   - component: {fileID: 1621931042}
+  - component: {fileID: 1621931050}
   m_Layer: 9
   m_Name: Marty
   m_TagString: Player
@@ -378,6 +386,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1621931050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621931040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d2b26d0c82d7349b4a6eb9d77e5c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keycard: {fileID: 1926787020}
+  Doors: {fileID: 614719127}
+  Range: 3
+  doorClose: 10
+  timer: 0
+  hasKeyCard: 0
+  startTimer: 0
+--- !u!114 &1621931051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621931040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c5fcb5763e87e429d426c186ceb88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: 0
 --- !u!1 &1726516321
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +549,12 @@ MonoBehaviour:
   target: {fileID: 1621931041}
   switchDelay: 0.5
   switchSpeed: 1
+--- !u!4 &1926787020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7028651188801309071, guid: 4626f438fec09f54ca747107a026628d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7028651189174501541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2035477679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -520,6 +566,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Keycard Door TR (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626904531896574170, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
       objectReference: {fileID: 0}
     - target: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
         type: 3}
@@ -534,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2064.5552
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
         type: 3}
@@ -576,6 +627,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7547859373058917921, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079582420835294811, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364060005623615163, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064003325034776988, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 489583999543016417, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158818278995197797, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518850308947516237, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac81a0334e43c6247928339daed33af8, type: 3}
 --- !u!1001 &1283013119347544836
@@ -603,7 +689,7 @@ PrefabInstance:
     - target: {fileID: 1283013119177376080, guid: cc9052e98e2b3d944aec3d914e036773,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2074.5676
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1283013119177376080, guid: cc9052e98e2b3d944aec3d914e036773,
         type: 3}
@@ -7935,6 +8021,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Keycard Door TR
       objectReference: {fileID: 0}
+    - target: {fileID: 6626904531896574170, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7948,7 +8039,7 @@ PrefabInstance:
     - target: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2064.5552
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7831759112195827342, guid: ac81a0334e43c6247928339daed33af8,
         type: 3}
@@ -7989,6 +8080,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547859373058917921, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079582420835294811, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364060005623615163, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064003325034776988, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 489583999543016417, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158818278995197797, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518850308947516237, guid: ac81a0334e43c6247928339daed33af8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac81a0334e43c6247928339daed33af8, type: 3}
