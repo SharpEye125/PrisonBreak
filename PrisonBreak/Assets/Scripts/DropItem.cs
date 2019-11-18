@@ -14,9 +14,16 @@ public class DropItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<EnemyHealth>().Ehealth < 1)
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "SPlayerAttack" || collision.gameObject.tag == "MPlayerAttack")
         {
-            Instantiate(Item);
+
+            if (gameObject.GetComponent<EnemyHealth>().Ehealth < 1)
+            {
+                Instantiate(Item);
+            }
         }
     }
 }
