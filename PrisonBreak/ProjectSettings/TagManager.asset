@@ -9,6 +9,7 @@ TagManager:
   - SPlayerAttack
   - Enemy
   - NextLT
+  - NextLevel
   layers:
   - Default
   - TransparentFX
