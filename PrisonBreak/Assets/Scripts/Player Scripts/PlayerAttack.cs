@@ -28,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log(mousePosition);
             Vector2 shootDir = new Vector2(mousePosition.x - transform.position.x,
                 mousePosition.y - transform.position.y);
+            bullet.transform.up = shootDir;
             shootDir.Normalize();
             bullet.GetComponent<Rigidbody2D>().velocity = shootDir * bulletSpeed;
             Destroy(bullet, bulletLifetime);
