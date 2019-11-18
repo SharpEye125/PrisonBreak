@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2733236445144457723}
   - component: {fileID: 2733236445144457727}
   - component: {fileID: 1920281071490151071}
+  - component: {fileID: 6277876810923257853}
   - component: {fileID: 2733236445144457714}
   - component: {fileID: 1920281071490151011}
   - component: {fileID: 2733236445144457721}
@@ -143,6 +144,25 @@ MonoBehaviour:
   prefab: {fileID: 6476196684799064282, guid: 0c40750a9b6aaa94692df01aa624cdf5, type: 3}
   bulletLifetime: 0.15
   shootDelay: 1
+--- !u!114 &6277876810923257853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733236445144457726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d2b26d0c82d7349b4a6eb9d77e5c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keycard: {fileID: 0}
+  Doors: {fileID: 0}
+  Range: 3
+  doorClose: 10
+  timer: 0
+  hasKeyCard: 0
+  startTimer: 0
 --- !u!70 &2733236445144457714
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

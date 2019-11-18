@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8727446021947224143}
   - component: {fileID: 8727446021947224142}
   - component: {fileID: 8727446021947224129}
+  - component: {fileID: 3453975295925335331}
   - component: {fileID: 8727446021947224141}
   - component: {fileID: 8727446021947224140}
   - component: {fileID: 8727446021947224138}
@@ -145,6 +146,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+--- !u!114 &3453975295925335331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727446021947224128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d2b26d0c82d7349b4a6eb9d77e5c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keycard: {fileID: 0}
+  Doors: {fileID: 0}
+  Range: 3
+  doorClose: 10
+  timer: 0
+  hasKeyCard: 0
+  startTimer: 0
 --- !u!114 &8727446021947224141
 MonoBehaviour:
   m_ObjectHideFlags: 0
