@@ -139,16 +139,16 @@ public class PlayerHP : MonoBehaviour
             {
                 transform.position = new Vector3(deathPoint.position.x,
                     deathPoint.position.y, transform.position.z);
+                health = maxHealth / 2;
+                UpdateHP();
+                gameObject.GetComponent<KeycardDoors>().KeycardEnable();
+                gameObject.GetComponent<KeycardDoors>().hasKeyCard = false;
                 playerToughness--;
                 if (playerToughness > collision.gameObject.GetComponent<EnemyHealth>().enemyToughness)
                 {
                     playerToughness--;
                 }
                 UpdateRepAndTough();
-                health = maxHealth / 2;
-                UpdateHP();
-                gameObject.GetComponent<KeycardDoors>().KeycardEnable();
-                gameObject.GetComponent<KeycardDoors>().hasKeyCard = false;
             }
         }
     }
