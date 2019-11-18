@@ -47,7 +47,8 @@ public class EnemyShoot : MonoBehaviour
             if (shootDir.magnitude <= shootFinding )
             {
             GameObject bullet = Instantiate(Attack, transform.position, Quaternion.identity);
-            shootDir.Normalize();
+                bullet.transform.up = shootDir;
+                shootDir.Normalize();
             bullet.GetComponent<Rigidbody2D>().velocity = shootDir * bulletSpeed;
             Destroy(bullet, bulletLifetime);
             }
